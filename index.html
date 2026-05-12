@@ -1,22 +1,101 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="uk">
 <head>
- <meta charset="UTF-8">
- <title>Візитка студента</title>
- <style>
-body { font-family: sans-serif; text-align: center; background-color: #ADD8E6; padding:
-50px; }
- .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px
-rgba(0,0,0,0.1); display: inline-block; }
- h1 { color: #333; }
- p { color: #666; }
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтелектуальна бойова машина</title>
+
+    <!-- Шрифти -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <div class="card">
- <h1>Привіт, я Ірина !</h1>
- <p>Це мій перший сайт, створений на курсі веброзробки.</p>
- <p>Моя спеціальність: Соціальні комунікації.</p>
- </div>
+
+    <header class="hero">
+        <nav class="navbar">
+            <h1>BattleTech Future</h1>
+
+            <a href="#contacts" class="btn">Контакти</a>
+        </nav>
+
+        <div class="hero-content">
+            <h2>Автономна бойова система майбутнього</h2>
+            <p>
+                Автономна система майбутнього для захисту військових,
+                медичної евакуації та кібербезпеки.
+            </p>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="card">
+            <h2>🛡️ Захист і бойові функції</h2>
+
+            <ul>
+                <li>Не вибухає при наїзді на міну</li>
+                <li>Має захист від різних типів ракет</li>
+                <li>Автоматично підлаштовується під завдання</li>
+                <li>Самостійно виїжджає з оточення</li>
+                <li>Сканує систему «свій-чужий»</li>
+                <li>Аналізує середовище на рівні, недоступному людському оку</li>
+                <li>Перехоплює та знешкоджує дрони</li>
+                <li>Збиває ракети та БПЛА типу «шахед»</li>
+                <li>Мінімізує уламкову небезпеку</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>🚑 Медичний модуль</h2>
+
+            <ul>
+                <li>Автоматично висуває каталку під пораненого</li>
+                <li>Прикриває військового медика</li>
+                <li>Передає інформацію про стан пораненого</li>
+                <li>Має систему автоматичного переливання крові</li>
+                <li>Стабілізує стан до прибуття в госпіталь</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>💻 Кібербезпека</h2>
+
+            <ul>
+                <li>Генерує фальшиві коди доступу</li>
+                <li>Передає інформацію про джерело зламу</li>
+                <li>Визначає місце знаходження хакера</li>
+                <li>Інтегрується в систему кібербезпеки України</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>🔥 Система самознищення</h2>
+
+            <p>
+                У разі захоплення ворогом система активує самознищення.
+                Для відміни потрібно відповісти на 5 захисних запитань.
+            </p>
+        </section>
+
+        <section id="contacts" class="card">
+            <h2>📩 Контакти</h2>
+
+            <form>
+                <input type="text" placeholder="Ваше ім'я">
+                <input type="email" placeholder="Ваш Email">
+                <textarea placeholder="Ваше повідомлення"></textarea>
+
+                <button type="submit">Надіслати</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
 </body>
 </html>
