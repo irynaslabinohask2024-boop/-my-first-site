@@ -1,101 +1,268 @@
-<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Інтелектуальна бойова машина</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Combat System</title>
 
-    <!-- Шрифти -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+<style>
+
+/* ===== BASE ===== */
+body{
+    margin:0;
+    font-family:Inter;
+    background:linear-gradient(135deg,#071A2F,#143B63);
+    color:white;
+}
+
+/* ===== HEADER ===== */
+header{
+    text-align:center;
+    padding:40px;
+    font-family:"Playfair Display", serif;
+}
+
+/* ===== LAYOUT ===== */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+/* ===== CARD (ЄДИНИЙ СТИЛЬ ДЛЯ ВСЬОГО) ===== */
+.card{
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
+    padding:25px;
+    margin:20px 0;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1,h2{
+    font-family:"Playfair Display", serif;
+}
+
+/* ===== INPUTS ===== */
+input, textarea, select{
+    width:100%;
+    margin-top:10px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-family:Inter;
+
+    background:rgba(255,255,255,0.12);
+    color:white;
+}
+
+/* ===== BUTTONS ===== */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    margin-top:10px;
+
+    background:#2D6A8D;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    font-family:Inter;
+}
+
+button:hover{
+    background:#A7C7E7;
+    color:#071A2F;
+}
+
+/* ===== QR ===== */
+#qrBox img{
+    margin-top:15px;
+    width:200px;
+    padding:10px;
+    background:white;
+    border-radius:12px;
+}
+
+/* ===== STATUS ===== */
+.status{
+    margin-top:10px;
+    opacity:0.8;
+}
+
+</style>
 </head>
+
 <body>
 
-    <header class="hero">
-        <nav class="navbar">
-            <h1>BattleTech Future</h1>
+<header>
+    <h1>🛡 AI COMBAT SYSTEM</h1>
+    <p>Інтелектуальна бойова платформа нового покоління</p>
+</header>
 
-            <a href="#contacts" class="btn">Контакти</a>
-        </nav>
+<div class="container">
 
-        <div class="hero-content">
-            <h2>Автономна бойова система майбутнього</h2>
-            <p>
-                Автономна система майбутнього для захисту військових,
-                медичної евакуації та кібербезпеки.
-            </p>
-        </div>
-    </header>
+<!-- ================= TTS ================= -->
+<div class="card">
 
-    <main>
+<h2>🧠 TTS модуль</h2>
 
-        <section class="card">
-            <h2>🛡️ Захист і бойові функції</h2>
+<textarea id="ttsText" placeholder="Введіть текст..."></textarea>
 
-            <ul>
-                <li>Не вибухає при наїзді на міну</li>
-                <li>Має захист від різних типів ракет</li>
-                <li>Автоматично підлаштовується під завдання</li>
-                <li>Самостійно виїжджає з оточення</li>
-                <li>Сканує систему «свій-чужий»</li>
-                <li>Аналізує середовище на рівні, недоступному людському оку</li>
-                <li>Перехоплює та знешкоджує дрони</li>
-                <li>Збиває ракети та БПЛА типу «шахед»</li>
-                <li>Мінімізує уламкову небезпеку</li>
-            </ul>
-        </section>
+<select id="voices"></select>
 
-        <section class="card">
-            <h2>🚑 Медичний модуль</h2>
+<input type="range" id="rate" min="0.5" max="2" step="0.1" value="1">
 
-            <ul>
-                <li>Автоматично висуває каталку під пораненого</li>
-                <li>Прикриває військового медика</li>
-                <li>Передає інформацію про стан пораненого</li>
-                <li>Має систему автоматичного переливання крові</li>
-                <li>Стабілізує стан до прибуття в госпіталь</li>
-            </ul>
-        </section>
+<button onclick="speakText()">▶ Озвучити</button>
 
-        <section class="card">
-            <h2>💻 Кібербезпека</h2>
+<p id="status" class="status">Готово</p>
 
-            <ul>
-                <li>Генерує фальшиві коди доступу</li>
-                <li>Передає інформацію про джерело зламу</li>
-                <li>Визначає місце знаходження хакера</li>
-                <li>Інтегрується в систему кібербезпеки України</li>
-            </ul>
-        </section>
+</div>
 
-        <section class="card">
-            <h2>🔥 Система самознищення</h2>
+<!-- ================= QR ================= -->
+<div class="card">
 
-            <p>
-                У разі захоплення ворогом система активує самознищення.
-                Для відміни потрібно відповісти на 5 захисних запитань.
-            </p>
-        </section>
+<h2>📡 QR (Поділитися)</h2>
 
-        <section id="contacts" class="card">
-            <h2>📩 Контакти</h2>
+<input id="qrText" placeholder="Текст або посилання">
 
-            <form>
-                <input type="text" placeholder="Ваше ім'я">
-                <input type="email" placeholder="Ваш Email">
-                <textarea placeholder="Ваше повідомлення"></textarea>
+<button onclick="generateQR()">Створити QR</button>
 
-                <button type="submit">Надіслати</button>
-            </form>
-        </section>
+<div id="qrBox"></div>
 
-    </main>
+</div>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+<!-- ================= SYSTEM ================= -->
+<div class="card">
+
+<h2>🛡 Функції системи</h2>
+
+<ul>
+<li>Захист від мін і ракет</li>
+<li>Автономна евакуація</li>
+<li>Медичний модуль</li>
+<li>Кіберзахист</li>
+</ul>
+
+</div>
+
+<!-- ================= SECURITY ================= -->
+<div class="card">
+
+<h2>🔐 Контроль доступу (5 питань)</h2>
+
+<input id="q1" placeholder="1. Код доступу">
+<input id="q2" placeholder="2. Підрозділ">
+<input id="q3" placeholder="3. Рівень доступу">
+<input id="q4" placeholder="4. ID команди">
+<input id="q5" placeholder="5. Підтвердження місії">
+
+<button onclick="checkAccess()">Перевірити доступ</button>
+
+<p id="accessStatus" class="status"></p>
+
+</div>
+
+</div>
+
+<script>
+
+/* ================= TTS ================= */
+
+let voices = [];
+
+function loadVoices(){
+    voices = speechSynthesis.getVoices();
+    let select = document.getElementById("voices");
+    select.innerHTML = "";
+
+    voices.forEach((v,i)=>{
+        let opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = v.name + " (" + v.lang + ")";
+        select.appendChild(opt);
+    });
+}
+
+speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
+function speakText(){
+
+    let text = document.getElementById("ttsText").value;
+
+    if(!text){
+        alert("Введіть текст");
+        return;
+    }
+
+    let utter = new SpeechSynthesisUtterance(text);
+
+    let voiceIndex = document.getElementById("voices").value;
+
+    utter.voice = voices[voiceIndex];
+    utter.rate = document.getElementById("rate").value;
+
+    document.getElementById("status").innerText = "🔊 Відтворення...";
+
+    utter.onend = ()=>{
+        document.getElementById("status").innerText = "Готово";
+    };
+
+    window.speechSynthesis.speak(utter);
+}
+
+/* ================= QR ================= */
+
+function generateQR(){
+
+    let text = document.getElementById("qrText").value;
+
+    if(!text){
+        alert("Введіть текст");
+        return;
+    }
+
+    let url =
+    "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="
+    + encodeURIComponent(text);
+
+    document.getElementById("qrBox").innerHTML =
+    `<img src="${url}" alt="QR Code">`;
+}
+
+/* ================= ACCESS SYSTEM ================= */
+
+function checkAccess(){
+
+    let a1 = document.getElementById("q1").value;
+    let a2 = document.getElementById("q2").value;
+    let a3 = document.getElementById("q3").value;
+    let a4 = document.getElementById("q4").value;
+    let a5 = document.getElementById("q5").value;
+
+    if(!a1 || !a2 || !a3 || !a4 || !a5){
+        document.getElementById("accessStatus").innerText =
+        "⚠ Заповніть усі поля";
+        return;
+    }
+
+    if(a1 === "12345" && a3.toLowerCase() === "high"){
+        document.getElementById("accessStatus").innerText =
+        "🟢 Доступ дозволено";
+    } else {
+        document.getElementById("accessStatus").innerText =
+        "🔴 Доступ відхилено";
+    }
+}
+
+</script>
 
 </body>
 </html>
