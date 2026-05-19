@@ -1,101 +1,241 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Інтелектуальна бойова машина</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Шрифти -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Військовий QR Генератор</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter', sans-serif;
+
+    background:linear-gradient(135deg,#0B1F3A,#1F4E79);
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+
+    margin-bottom:15px;
+
+    font-size:32px;
+}
+
+p{
+    text-align:center;
+
+    margin-bottom:25px;
+
+    opacity:0.8;
+}
+
+input{
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    outline:none;
+
+    font-size:16px;
+
+    margin-bottom:20px;
+}
+
+.color-label{
+    margin-bottom:10px;
+    display:block;
+}
+
+.color-picker{
+    width:100%;
+    height:50px;
+
+    border:none;
+
+    border-radius:14px;
+
+    margin-bottom:20px;
+
+    cursor:pointer;
+}
+
+button{
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2D6A8D;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+    background:#A7C7E7;
+
+    color:#0B1F3A;
+
+    transform:scale(1.04);
+}
+
+#qrBox{
+    margin-top:30px;
+
+    text-align:center;
+}
+
+#qrBox img{
+    margin-top:15px;
+
+    border-radius:15px;
+
+    background:white;
+
+    padding:10px;
+
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.download-btn{
+    margin-top:20px;
+}
+
+.example{
+    margin-top:15px;
+
+    font-size:14px;
+
+    opacity:0.7;
+}
+
+</style>
 </head>
+
 <body>
 
-    <header class="hero">
-        <nav class="navbar">
-            <h1>BattleTech Future</h1>
+<div class="container">
 
-            <a href="#contacts" class="btn">Контакти</a>
-        </nav>
+<h1>🛡 QR Генератор</h1>
 
-        <div class="hero-content">
-            <h2>Автономна бойова система майбутнього</h2>
-            <p>
-                Автономна система майбутнього для захисту військових,
-                медичної евакуації та кібербезпеки.
-            </p>
-        </div>
-    </header>
+<p>
+Система генерації QR-кодів для військово-технологічних задач
+</p>
 
-    <main>
+<input
+type="text"
+id="text"
+placeholder="Введіть текст або посилання"
+>
 
-        <section class="card">
-            <h2>🛡️ Захист і бойові функції</h2>
+<label class="color-label">
+Оберіть колір QR-коду:
+</label>
 
-            <ul>
-                <li>Не вибухає при наїзді на міну</li>
-                <li>Має захист від різних типів ракет</li>
-                <li>Автоматично підлаштовується під завдання</li>
-                <li>Самостійно виїжджає з оточення</li>
-                <li>Сканує систему «свій-чужий»</li>
-                <li>Аналізує середовище на рівні, недоступному людському оку</li>
-                <li>Перехоплює та знешкоджує дрони</li>
-                <li>Збиває ракети та БПЛА типу «шахед»</li>
-                <li>Мінімізує уламкову небезпеку</li>
-            </ul>
-        </section>
+<input
+type="color"
+id="qrColor"
+class="color-picker"
+value="#000000"
+>
 
-        <section class="card">
-            <h2>🚑 Медичний модуль</h2>
+<button onclick="generateQR()">
+Згенерувати QR-код
+</button>
 
-            <ul>
-                <li>Автоматично висуває каталку під пораненого</li>
-                <li>Прикриває військового медика</li>
-                <li>Передає інформацію про стан пораненого</li>
-                <li>Має систему автоматичного переливання крові</li>
-                <li>Стабілізує стан до прибуття в госпіталь</li>
-            </ul>
-        </section>
+<div class="example">
+Приклад:<br>
+https://google.com<br>
+або<br>
+Інтелектуальна бойова машина
+</div>
 
-        <section class="card">
-            <h2>💻 Кібербезпека</h2>
+<div id="qrBox"></div>
 
-            <ul>
-                <li>Генерує фальшиві коди доступу</li>
-                <li>Передає інформацію про джерело зламу</li>
-                <li>Визначає місце знаходження хакера</li>
-                <li>Інтегрується в систему кібербезпеки України</li>
-            </ul>
-        </section>
+</div>
 
-        <section class="card">
-            <h2>🔥 Система самознищення</h2>
+<script>
 
-            <p>
-                У разі захоплення ворогом система активує самознищення.
-                Для відміни потрібно відповісти на 5 захисних запитань.
-            </p>
-        </section>
+function generateQR(){
 
-        <section id="contacts" class="card">
-            <h2>📩 Контакти</h2>
+    let text = document.getElementById("text").value;
 
-            <form>
-                <input type="text" placeholder="Ваше ім'я">
-                <input type="email" placeholder="Ваш Email">
-                <textarea placeholder="Ваше повідомлення"></textarea>
+    let color =
+    document.getElementById("qrColor").value.replace("#","");
 
-                <button type="submit">Надіслати</button>
-            </form>
-        </section>
+    if(text === ""){
 
-    </main>
+        alert("Введіть текст або посилання");
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+        return;
+    }
+
+    let qrUrl =
+    "https://api.qrserver.com/v1/create-qr-code/?size=250x250"
+    + "&color=" + color
+    + "&data=" + encodeURIComponent(text);
+
+    document.getElementById("qrBox").innerHTML =
+    `
+    <img src="${qrUrl}" alt="QR Code">
+
+    <br>
+
+    <a href="${qrUrl}" download="qr-code.png">
+        <button class="download-btn">
+            Завантажити QR-код
+        </button>
+    </a>
+    `;
+}
+
+</script>
 
 </body>
 </html>
